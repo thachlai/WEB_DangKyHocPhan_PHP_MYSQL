@@ -1,0 +1,182 @@
+/* dkhp/admin/css/mainedit.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Kích hoạt Flexbox */
+    flex-direction: column; /* Sắp xếp các mục theo cột */
+    min-height: 100vh; /* Đảm bảo body chiếm toàn bộ chiều cao của viewport */
+}
+
+/* Vì header và menubar được include ở đây,
+   và header.php có thể chứa thẻ <body> mở,
+   nên các style cho header và menubar cần được xử lý riêng
+   hoặc đảm bảo chúng không phá vỡ layout chính.
+   Ở đây, chúng ta tập trung vào phần <main> content.
+*/
+
+main {
+    flex-grow: 1; /* Cho phép main chiếm không gian còn lại */
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* Căn giữa form theo chiều ngang */
+    align-items: flex-start; /* Căn lề trên form theo chiều dọc */
+    padding-top: 100px; /* Điều chỉnh để tránh menu bar */
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Giới hạn chiều rộng của form */
+    box-sizing: border-box;
+    text-align: center; /* Để căn giữa h2 */
+}
+
+.form-container h2 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.form-container label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="number"]:focus,
+.form-container input[type="email"]:focus,
+.form-container input[type="password"]:focus,
+.form-container select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-container button[type="submit"] {
+    background-color: #28a745; /* Màu xanh lá cây */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    margin-bottom: 15px; /* Khoảng cách với nút back */
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #218838; /* Màu xanh đậm hơn khi hover */
+    transform: translateY(-2px);
+}
+
+.form-container button[type="submit"] i {
+    margin-right: 8px;
+}
+
+.btn-back {
+    display: inline-block;
+    background-color: #6c757d; /* Màu xám */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: calc(100% - 40px); /* Tính toán để khớp với width của input */
+    box-sizing: border-box;
+}
+
+.btn-back:hover {
+    background-color: #5a6268; /* Màu xám đậm hơn khi hover */
+    transform: translateY(-2px);
+}
+
+.btn-back i {
+    margin-right: 8px;
+}
+
+/* Alert Messages */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: left;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 20px;
+        margin: 0 15px;
+    }
+
+    .form-container h2 {
+        font-size: 20px;
+    }
+
+    .form-container button[type="submit"],
+    .btn-back {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding-top: 80px;
+    }
+    .form-container {
+        padding: 15px;
+    }
+    .form-container input,
+    .form-container select,
+    .form-container button,
+    .btn-back {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

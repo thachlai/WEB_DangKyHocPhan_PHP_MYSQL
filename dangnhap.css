@@ -1,0 +1,132 @@
+/* dkhp/css/dangnhap.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column; /* Cho phép header ở trên và nội dung ở dưới */
+    min-height: 100vh; /* Chiều cao tối thiểu của body là toàn bộ viewport */
+    margin: 0;
+    padding: 0;
+}
+
+/* Đảm bảo nội dung chính không bị che bởi header */
+main {
+    flex-grow: 1; /* Cho phép main content chiếm hết không gian còn lại */
+    padding-top: 20px; /* Thêm padding nếu header không fixed, hoặc điều chỉnh nếu fixed */
+}
+
+.login-container {
+    flex-grow: 1; /* Cho phép container chiếm hết không gian còn lại */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box; /* Bao gồm padding trong chiều rộng */
+}
+
+.login-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 28px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative; /* Dùng cho icon mắt */
+}
+
+.form-input {
+    width: calc(100% - 20px); /* 100% trừ đi padding */
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.password-toggle {
+    position: relative;
+}
+
+.toggle-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+}
+
+.toggle-btn i {
+    font-size: 18px;
+}
+
+.login-button {
+    background-color: #007bff; /* Màu xanh dương */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.forgot-password {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.forgot-password a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #dc3545; /* Màu đỏ đậm */
+    font-size: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.p-center {
+    text-align: center;
+    margin: 0;
+}
+
+.color-turquoise {
+    color: #007bff; /* Đổi màu xanh ngọc sang xanh dương cho đồng bộ */
+}

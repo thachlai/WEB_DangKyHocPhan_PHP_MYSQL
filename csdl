@@ -1,0 +1,80 @@
+-- Bước 1: Tạo các bảng cơ bản không có khóa ngoại tham chiếu đến bảng khác trước
+
+-- Bảng KHOA: Quản lý thông tin các khoa trong trường
+CREATE TABLE khoa (
+    ma_khoa INT AUTO_INCREMENT PRIMARY KEY,
+    ten_khoa VARCHAR(100) NOT NULL UNIQUE -- Tên khoa phải là duy nhất
+);
+
+-- Bảng HOC_KI: Quản lý thông tin các học kỳ
+CREATE TABLE hocki (
+    id_hocki INT AUTO_INCREMENT PRIMARY KEY,
+    ten_hocki VARCHAR(100) NOT NULL UNIQUE -- Tên học kỳ (ví dụ: "Học kỳ 1 (2024-2025)") phải là duy nhất
+);
+
+-- Bảng PHONG_HOC: Quản lý thông tin các phòng học
+CREATE TABLE phong_hoc (
+    id_phong INT AUTO_INCREMENT PRIMARY KEY,
+    ten_phong VARCHAR(50) NOT NULL UNIQUE, -- Tên phòng (ví dụ: "A201", "B305") phải là duy nhất
+    suc_chua INT, -- Sức chứa tối đa của phòng
+    loai_phong VARCHAR(50) -- Ví dụ: "Lý thuyết", "Thực hành"
+);
+
+---
+
+-- Bước 2: Tạo các bảng có khóa ngoại tham chiếu đến các bảng đã tạo ở Bước 1
+
+-- Bảng TAI_KHOAN: Quản lý thông tin tài khoản người dùng (sinh viên, giảng viên, admin)
+CREATE TABLE taikhoan (
+    ma_tk INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE, -- Email không được trống và phải là duy nhất
+    matkhau VARCHAR(32) NOT NULL COMMENT 'Mật khẩu đã mã hóa MD5', -- Mật khẩu không được trống
+    ten_taikhoan VARCHAR(100) NOT NULL, -- Tên tài khoản không được trống
+    gioitinh VARCHAR(5),
+    ngaysinh DATE,
+    sdt VARCHAR(11),
+    vaitro INT DEFAULT 1 COMMENT '0 Admin, 1 Sinhvien, 2 giangvien', -- Vai trò mặc định là sinh viên
+    ma_khoa INT,
+    FOREIGN KEY (ma_khoa) REFERENCES khoa(ma_khoa) -- Khóa ngoại liên kết với bảng khoa
+);
+
+-- Bảng MON: Quản lý thông tin các môn học
+CREATE TABLE mon (
+    id_mon INT AUTO_INCREMENT PRIMARY KEY,
+    ten_mon VARCHAR(100) NOT NULL UNIQUE, -- Tên môn học không được trống và phải là duy nhất
+    id_khoa INT NOT NULL, -- Môn học phải thuộc về một khoa
+    FOREIGN KEY (id_khoa) REFERENCES khoa(ma_khoa) -- Khóa ngoại liên kết với bảng khoa
+);
+
+---
+
+-- Bước 3: Tạo bảng LOP_HOC_PHAN (đã gộp thông tin của Học phần)
+-- Chứa tất cả thông tin chi tiết của một lớp học phần cụ thể
+CREATE TABLE lop_hocphan (
+    id_lop_hp INT AUTO_INCREMENT PRIMARY KEY,
+    ten_lop_hocphan VARCHAR(255) NOT NULL, -- Đổi tên trường thành ten_lop_hocphan
+    id_mon INT NOT NULL, -- Môn học mà lớp này thuộc về
+    id_taikhoan INT NOT NULL COMMENT 'Ma_tk của giang vien phu trach lop hoc phan (vaitro = 2)', -- Giảng viên phụ trách
+    id_hocki INT NOT NULL, -- Học kỳ lớp này được mở
+    ten_lop VARCHAR(100) NOT NULL, -- Tên nhóm/mã lớp (ví dụ: "L01", "LT1")
+    si_so_toi_da INT, -- Sĩ số tối đa của lớp học phần
+    thoi_gian_hoc VARCHAR(255) NOT NULL, -- Ví dụ: "Thứ 3, tiết 1-3"
+    id_phong INT NOT NULL, -- Phòng học cụ thể
+    FOREIGN KEY (id_mon) REFERENCES mon(id_mon),
+    FOREIGN KEY (id_taikhoan) REFERENCES taikhoan(ma_tk),
+    FOREIGN KEY (id_hocki) REFERENCES hocki(id_hocki),
+    FOREIGN KEY (id_phong) REFERENCES phong_hoc(id_phong)
+);
+
+---
+
+-- Bước 4: Tạo bảng DANG_KY_HOC_PHAN
+-- Ghi nhận việc sinh viên đăng ký vào một lớp học phần cụ thể
+CREATE TABLE dangky_hocphan (
+    id_dkhp INT AUTO_INCREMENT PRIMARY KEY,
+    id_taikhoan INT NOT NULL, -- Sinh viên thực hiện đăng ký
+    id_lop_hp INT NOT NULL, -- id_lop_hp của lớp học phần mà sinh viên đăng ký
+    ngay_dang_ky DATETIME DEFAULT CURRENT_TIMESTAMP, -- Thời điểm sinh viên đăng ký
+    FOREIGN KEY (id_taikhoan) REFERENCES taikhoan(ma_tk), -- Khóa ngoại liên kết với tài khoản sinh viên
+    FOREIGN KEY (id_lop_hp) REFERENCES lop_hocphan(id_lop_hp) -- Khóa ngoại liên kết với lớp học phần
+);

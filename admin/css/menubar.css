@@ -1,0 +1,162 @@
+/* dkhp/admin/css/menubar.css */
+
+/* Sidebar (Menubar) */
+.admin-sidebar {
+    width: 250px;
+    height: 100vh; /* Chiều cao toàn bộ viewport */
+    background-color: #2c3e50; /* Nền tối */
+    color: white;
+    position: fixed; /* Cố định vị trí */
+    top: 0; /* Bắt đầu từ đỉnh */
+    left: 0;
+    padding-top: 20px; /* Padding trên cho nội dung */
+    z-index: 999; /* Đảm bảo nằm trên các nội dung khác */
+    transform: translateX(-100%); /* Mặc định ẩn hoàn toàn sang trái */
+    transition: transform 0.3s ease; /* Hiệu ứng trượt */
+    overflow-y: auto; /* Cho phép cuộn nếu nội dung dài */
+}
+
+/* Khi có class show thì hiện ra */
+.admin-sidebar.show {
+    transform: translateX(0); /* Hiện sidebar */
+}
+
+/* Nút toggle menu */
+#menu-toggle {
+    position: fixed; /* Cố định trên màn hình */
+    top: 5px; /* Khoảng cách từ đỉnh */
+    left: 20px; /* Khoảng cách từ lề trái */
+    font-size: 24px;
+    background-color: #333; /* Nền nút toggle */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 1000; /* Nằm trên sidebar */
+    border-radius: 5px;
+}
+
+/* Accordion menu */
+.admin-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-nav ul li {
+    border-bottom: 1px solid #3d566e; /* Đường kẻ phân chia mục */
+}
+
+.admin-nav .accordion > a {
+    padding: 15px 20px;
+    display: flex; /* Dùng flexbox cho icon mũi tên nếu có */
+    justify-content: space-between; /* Đẩy icon sang phải */
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    background-color: #34495e; /* Nền mục menu chính */
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.admin-nav .accordion > a:hover {
+    background-color: #3e5d7c; /* Nền hover */
+}
+
+.admin-nav .accordion .toggle-icon {
+    transition: transform 0.3s ease; /* Hiệu ứng xoay icon */
+}
+
+.admin-nav .accordion.active > a .toggle-icon {
+    transform: rotate(180deg); /* Xoay icon khi menu mở */
+}
+
+.sub-menu {
+    display: none; /* Mặc định ẩn */
+    list-style: none;
+    padding-left: 15px; /* Thụt lề cho sub-menu */
+    background-color: #2e4155; /* Nền sub-menu */
+}
+
+.accordion.active > .sub-menu {
+    display: block; /* Hiện sub-menu khi accordion active */
+}
+
+.sub-menu li a {
+    padding: 10px 20px;
+    color: #ecf0f1; /* Màu chữ sub-menu */
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.sub-menu li a:hover {
+    background-color: #3e5d7c; /* Nền hover sub-menu */
+}
+
+/* User info */
+.user-profile { /* Đổi từ .user-info để tránh trùng tên */
+    position: absolute;
+    bottom: 20px; /* Đặt ở cuối menubar */
+    width: 100%; /* Chiếm toàn bộ chiều rộng menubar */
+    padding: 15px;
+    box-sizing: border-box; /* Bao gồm padding trong width */
+    text-align: center;
+    color: white;
+    font-size: 14px;
+}
+
+.user-profile .profile-avatar { /* Đổi từ .user-info img */
+    width: 60px; /* Tăng kích thước avatar */
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px; /* Khoảng cách dưới avatar */
+    border: 2px solid #007bff; /* Viền xanh nổi bật */
+}
+
+.user-profile p {
+    margin: 5px 0;
+    font-weight: bold;
+    color: #e0e0e0; /* Màu chữ nhạt hơn */
+}
+
+.user-profile .profile-actions { /* Tạo một div riêng cho các liên kết hành động */
+    margin-top: 10px;
+}
+
+.user-profile .profile-actions a {
+    color: #007bff; /* Màu xanh cho liên kết */
+    text-decoration: none;
+    margin: 0 8px; /* Khoảng cách giữa các liên kết */
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.user-profile .profile-actions a:hover {
+    color: #8cc4ff;
+    text-decoration: underline;
+}
+
+
+/* Điều chỉnh body để nội dung không bị che khi menubar mở */
+/* Vui lòng thêm class 'admin-body' vào thẻ <body> của các trang Admin */
+body.admin-body {
+    padding-left: 0px; /* Mặc định không padding-left */
+    transition: padding-left 0.3s ease; /* Hiệu ứng dịch chuyển */
+}
+
+body.admin-body.sidebar-open {
+    padding-left: 250px; /* Khi menubar mở, nội dung dịch sang phải bằng chiều rộng menubar */
+}
+
+/* Responsive adjustments (optional) */
+@media (max-width: 768px) {
+    /* Điều chỉnh cho màn hình nhỏ hơn nếu cần */
+    .admin-sidebar {
+        width: 220px;
+    }
+    body.admin-body.sidebar-open {
+        padding-left: 220px;
+    }
+}

@@ -1,0 +1,64 @@
+simplenote/     # Thư mục gốc của dự án
+│
+├── admin/          # floder chứa các file Khu vực dành cho Admin
+│   ├── css        # floder chứa css của khu vực admin
+│   │   ├──  mainadd.css # Cấu hình giao diện cho các file có chức năng thêm trong khu vực admin
+│   │   ├──  mainedit.css # Cấu hình giao diện cho các file có chức năng edit trong khu vực admin
+│   │   ├──  mainlist.css # Cấu hình giao diện cho các file có chức năng hiển thị danh sách trong khu vực admin
+│   │   └──  menubar.css # Cấu hình giao diện  cho thanh tác vụ dùng cho toàn bộ khu vực admin
+│   ├── index.php        # Trang dashboard admin
+│   ├── ajax_get_lichhoc.php    # lấy thông tin lịch học
+│   ├── hocki.php   # hiển thị danh sách học kì
+│   ├── khoa.php  # hiển thị danh sách khoa
+│   ├── lophocphan.php   # hiển thị danh sách học phần
+│   ├── menubar.php  # menubar quản lý 
+│   ├── mon.php   # hiển thị danh sách môn
+│   ├── phong.php   # hiển thị danh sách phòng
+│   ├── quanlylichhoc.php   # Quản lý lịch học 
+│   ├── suahocki.php   # sửa học kì
+│   ├── suakhoa.php   # sửa khoa
+│   ├── sualichhoc.php   # sửa lịch học
+│   ├── sualophocphan.php   # sửa lớp học phần
+│   ├── suamon.php   # sửa môn 
+│   ├── suaphong.php   # sửa phòng
+│   ├── suataikhoan.php   # sửa tài khoản của người dùng
+│   ├── taikhoan.php   # danh sách tài khoản người dùng
+│   ├── themhocki.php   # Thêm học kì
+│   ├── themkhoa.php   # Thêm Khoa
+│   ├── themlichhoc.php   # Thêm Lịch học
+│   ├── themlophocphan.php   # Thêm lớp học phần
+│   ├── themmon.php   # Thêm môn học
+│   ├── themphong.php   # Thêm Phòng học
+│   └── themtaikhoan.php  # Thêm Tài khoản
+
+│
+├── uploads/                   #chứa ảnh lưu trử tai nguyên của web và ảnh up lên của người dùng
+│   ├──logo.png            # Logo của web
+│   └──một số ảnh khác,...
+
+├── giangvien/                  # Khu vực dành cho người dùng có phân quyền giảng viên
+│   ├── index.php          # Trang chính sau khi login
+│   ├── list_lophp.php          # Danh sách lớp học phần mà giảng viên đang giảng dạy
+│   └── list_sinhvien.php        # Danh sách sinh viên có trong lớp
+│
+├── sinhvien/                  # Khu vực dành cho người dùng có phân quyền sinh viên
+│   ├── index.php          # Trang chính sau khi login nếu là sinh viên
+│   ├── process_dangky.php          # logic xử lý đăng ký học phần của sinh viên
+│   ├── process_huydangky.php # logic xử lý hủy đăng ký
+│   ├── dangkyhocphan.php       # Đăng ký học phần mà admin đã duyệt
+│   └── tkb_canhan.php        # Danh sách lớp học phần mà sinh viên đã được xép thời khóa biểu
+│
+├── conn.php           # Kết nối cơ sở dữ liệu
+├── dangnhap.php       #trang đăng nhập dùng chung cho toàn hệ thống
+├── dangxuat.php       #trang xử lý logic đăng xuất dùng chung cho toàn hệ thống
+├── header.php       #Cầu hình Khung và xử lý cho phần header dùng chung cho toàn web
+├── header.css       #Cấu hình giao diện cho heaer.php
+├── hoso.php       #Trang Hồ sơ hiển thị thông tin tài khoản cho toàn bộ người dùng trong hệ thống
+├── suahoso.php       #trang sửa hồ sơ người dùng chung cho toàn hệ thống
+├── thongbao_truycap.php       #Xử lý logic thông báo cho toàn hệ thống
+├── function.php   # chứa các hàm xử lý logic kiểm tra cho toàn hệ thống
+└── dangnhap.css            #Cấu hình giao diện cho file đăng nhập 
+END
+
+Thư viện ngoài source dự án
+PHPMailer-master
